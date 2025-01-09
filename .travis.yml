@@ -1,0 +1,23 @@
+dist: focal
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t jedirichang/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true jedirichang/react-test npm test -- --coverage
+
+after_sucess:
+  - docker build -t jedirichang/multi-client  ./client
+  - docker build -t jedirichang/multi-nginx  ./nginx
+  - docker build -t jedirichang/multi-server  ./server
+  - docker build -t jedirichang/multi-worker  ./worker
+
+  #Log in to dockeer cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stind
+  #Take those images and push them to docker hub
+  - docker push jedirichang/multi-client
+  - docker push jedirichang/multi-nginx
+  - docker push jedirichang/multi-server
+  - docker push jedirichang/multi-worker
