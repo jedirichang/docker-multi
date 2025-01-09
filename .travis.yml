@@ -15,7 +15,7 @@ after_sucess:
   - docker build -t jedirichang/multi-worker  ./worker
 
   #Log in to dockeer cli
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stind
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #Take those images and push them to docker hub
   - docker push jedirichang/multi-client
   - docker push jedirichang/multi-nginx
