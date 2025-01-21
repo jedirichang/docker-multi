@@ -21,3 +21,15 @@ after_sucess:
   - docker push jedirichang/multi-nginx
   - docker push jedirichang/multi-server
   - docker push jedirichang/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "richang-docker-multi"
+  env: "Richang-docker-multi-envs"
+  bucket_name: "elasticbeanstalk-ap-south-1-615299754589"
+  bucket_path: "richang-docker-multi"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECERET_KEY"
