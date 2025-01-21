@@ -1,11 +1,11 @@
 version: "3"
 services:
   client:
-    image: "rallycoding/multi-client"
+    image: "jedirichang/multi-client"
     mem_limit: 128m
     hostname: client
   server:
-    image: "rallycoding/multi-server"
+    image: "jedirichang/multi-server"
     mem_limit: 128m
     hostname: api
     environment:
@@ -16,15 +16,16 @@ services:
       - PGDATABASE=$PGDATABASE
       - PGPASSWORD=$PGPASSWORD
       - PGPORT=$PGPORT
+      - NODE_ENV=$NODE_ENV
   worker:
-    image: "rallycoding/multi-worker"
+    image: "jedirichang/multi-worker"
     mem_limit: 128m
     hostname: worker
     environment:
       - REDIS_HOST=$REDIS_HOST
       - REDIS_PORT=$REDIS_PORT
   nginx:
-    image: "rallycoding/multi-nginx"
+    image: "jedirichang/multi-nginx"
     mem_limit: 128m
     hostname: nginx
     ports:
