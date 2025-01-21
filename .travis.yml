@@ -26,7 +26,7 @@ deploy:
   provider: elasticbeanstalk
   region: "ap-south-1"
   app: "richang-docker-multi"
-  env: "Richang-docker-multi-envs"
+  env: "Richang-docker-multi-env"
   bucket_name: "elasticbeanstalk-ap-south-1-615299754589"
   bucket_path: "richang-docker-multi"
   on:
